@@ -4,7 +4,7 @@ define('DB_NAME', '_db.sqlite');
 
 function is_installed()
 {
-    return file_exists(__DIR__ . '/' . DB_NAME);
+    return file_exists(__DIR__.'/'.DB_NAME);
 }
 
 function is_request_get()
@@ -19,13 +19,13 @@ function is_request_post()
 
 function render($file, $data = [])
 {
-    $view = realpath(__DIR__ . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . $file . '.php');
+    $view = realpath(__DIR__.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.$file.'.php');
 
     extract($data);
 
     ob_start();
 
-    require($view);
+    require $view;
 
     echo ob_get_clean();
 }
@@ -33,8 +33,8 @@ function render($file, $data = [])
 function render_error($message)
 {
     render('message', [
-        'title' => 'error',
-        'message' => $message
+        'title'   => 'error',
+        'message' => $message,
     ]);
 
     die();
@@ -43,7 +43,7 @@ function render_error($message)
 function render_success($message)
 {
     render('message', [
-        'title' => 'success',
-        'message' => $message
+        'title'   => 'success',
+        'message' => $message,
     ]);
 }
