@@ -2,7 +2,6 @@
 
 class HashFactory
 {
-
     private $strategies = [];
 
     public function register($name, HashStrategy $strategy)
@@ -15,6 +14,7 @@ class HashFactory
         if (!isset($this->strategies[$name])) {
             throw new Exception('Strategy Not Supported');
         }
+
         return $this->strategies[$name];
     }
 }

@@ -2,13 +2,13 @@
 
 require_once 'functions.php';
 
-if(!is_installed()){
-    render_error("Application is not installed");
+if (!is_installed()) {
+    render_error('Application is not installed');
 }
 
 function get_films()
 {
-    $db = new SQLite3(__DIR__ . '/' . DB_NAME);
+    $db = new SQLite3(__DIR__.'/'.DB_NAME);
     $films_query = $db->query('SELECT * FROM "films"');
     $films = [];
     while ($row = $films_query->fetchArray(SQLITE3_ASSOC)) {
@@ -26,10 +26,10 @@ function get_films()
         $films[] = ['film_id' => $row['id'], 'title' => $row['title'], 'votes_count' => $votes_count, 'average_score' => $votes_average];
     }
     $db->close();
+
     return $films;
 }
 
 render('index', [
-    'films' => get_films()
+    'films' => get_films(),
 ]);
-

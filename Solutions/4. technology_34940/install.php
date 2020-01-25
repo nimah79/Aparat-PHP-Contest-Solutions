@@ -3,24 +3,24 @@
 require_once 'functions.php';
 
 if (is_installed()) {
-    render_error("Already installed");
+    render_error('Already installed');
 }
 
 function read_parameters()
 {
-    return json_decode(file_get_contents(__DIR__ . '/data/parameters.json'), true);
+    return json_decode(file_get_contents(__DIR__.'/data/parameters.json'), true);
 }
 
 function read_films()
 {
-    return json_decode(file_get_contents(__DIR__ . '/data/films.json'), true);
+    return json_decode(file_get_contents(__DIR__.'/data/films.json'), true);
 }
 
-if (file_exists(__DIR__ . '/' . DB_NAME)) {
+if (file_exists(__DIR__.'/'.DB_NAME)) {
     render_error('Already installed');
 }
 
-$db = new SQLite3(__DIR__ . '/' . DB_NAME);
+$db = new SQLite3(__DIR__.'/'.DB_NAME);
 
 // Create Tables
 $db->exec('CREATE TABLE "parameters" ("id" INTEGER PRIMARY KEY, "title" TEXT NOT NULL UNIQUE, "genre" TEXT NOT NULL)');
@@ -40,5 +40,4 @@ foreach ($parameters as $parameter) {
 
 $db->close();
 
-
-render_success("Installed successfully");
+render_success('Installed successfully');
